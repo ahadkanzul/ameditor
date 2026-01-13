@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AMEditorPro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#141e30,#243b55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+}
+.container{
+    width:90%;
+    max-width:900px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+header{
+    text-align:center;
+    margin-bottom:25px;
+}
+header h1{
+    font-size:2.2rem;
+    font-weight:600;
+}
+header p{
+    opacity:0.8;
+}
+.editor{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+.box{
+    background:rgba(0,0,0,0.3);
+    border-radius:15px;
+    padding:20px;
+}
+.box h2{
+    font-size:1.2rem;
+    margin-bottom:15px;
+}
+input[type="file"]{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    background:#fff;
+    color:#000;
+    cursor:pointer;
+}
+textarea{
+    width:100%;
+    height:120px;
+    border-radius:10px;
+    padding:10px;
+    border:none;
+    resize:none;
+    outline:none;
+    font-size:15px;
+}
+.preview{
+    text-align:center;
+}
+.preview img{
+    max-width:100%;
+    border-radius:15px;
+    display:none;
+    margin-bottom:10px;
+}
+.preview p{
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:12px;
+    min-height:60px;
+}
+footer{
+    text-align:center;
+    margin-top:20px;
+    font-size:14px;
+    opacity:0.7;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .editor{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <header>
+        <h1>AMEditorPro</h1>
+        <p>Upload Image & Add Text Beautifully</p>
+    </header>
+
+    <div class="editor">
+        <!-- Upload Section -->
+        <div class="box">
+            <h2>Upload Image</h2>
+            <input type="file" accept="image/*" onchange="loadImage(event)">
+        </div>
+
+        <!-- Text Section -->
+        <div class="box">
+            <h2>Add Text</h2>
+            <textarea placeholder="Type your text here..." oninput="updateText(this.value)"></textarea>
+        </div>
+    </div>
+
+    <!-- Preview -->
+    <div class="box preview" style="margin-top:20px;">
+        <h2>Live Preview</h2>
+        <img id="previewImage">
+        <p id="previewText">Your text will appear here...</p>
+    </div>
+
+    <footer>
+        © 2026 AMEditorPro | Designed with ❤️
+    </footer>
+</div>
+
+<script>
+function loadImage(event){
+    const img = document.getElementById("previewImage");
+    img.src = URL.createObjectURL(event.target.files[0]);
+    img.style.display = "block";
+}
+
+function updateText(text){
+    document.getElementById("previewText").innerText = text || "Your text will appear here...";
+}
+</script>
+
+</body>
+</html>
